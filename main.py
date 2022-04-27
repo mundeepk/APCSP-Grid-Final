@@ -62,24 +62,24 @@ while True:
   
   
   #starts with the main empty list
-  maze = []
+  grid = []
   #outer loop starts with a new empty list and then the inner loop adds the character the specificed number of times (the length of the grid) to that empty loop. Then that empty loops gets appended to the main list. This successfully creates a row with the desired length. This repeats till the desired height of the grid is reached. 
   for i in range(gridHeight):
     row = []
     for i2 in range(gridLength):
       row.append(character)
-    maze.append(row)
+    grid.append(row)
 
-  def outputMaze(inputMaze):
-    print("\n" + "-" * (2 * len(inputMaze[0]) + 3)) #Top border line 
-    for row in inputMaze:
+  def outputGrid(inputGrid):
+    print("\n" + "-" * (2 * len(inputGrid[0]) + 3)) #Top border line 
+    for row in inputGrid:
       print("|", end = " ") #left side border
       for item in row:
         print(item, end = " ") #each item separated by spaces
       print('|') # right side border
-    print("-"*(2 * len(inputMaze[0]) + 3) + "\n") #Bottom border line
+    print("-"*(2 * len(inputGrid[0]) + 3) + "\n") #Bottom border line
 
-  outputMaze(maze)
+  outputGrid(grid)
 
   #loop to get correct input to play again
   while True:

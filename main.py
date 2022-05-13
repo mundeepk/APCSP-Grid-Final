@@ -2,27 +2,21 @@
 
 #Welcome
 print("Welcome!" +
-      "\n\nThis program creates a grid out of a character of your choice!" +
+      "\n\nThis program creates a grid out of characters of your choice!" +
       "\nYou will also input the size of your desired grid!" + "\n")
 
 gridLength = 0
 gridHeight = 0
-character = ""
+userCharacters = ""
 
 while True:
     #main loop that continuously asks for user inputs until they are given
     while True:
         #asks user for single they want in their grid
-        while True:
-            character = input(
-                "What character do you want in your grid? Ex) 'X', '$'" +
-                "\nEnter one character only: ")
-            if len(character) > 1:
-                print("Try again")
-                continue
-            else:
-                break
-
+        userCharacters = input(
+                "What character(s) do you want in your grid? Ex) 'X%', '$j5'" +
+                "\nEnter as many as you wish: ")
+      
         #asks user for square or rectangle grid
         while True:
             shape = input("\nDo you want a square or rectangle grid?" +
@@ -64,14 +58,16 @@ while True:
             break
         break
 
-    #starts with the main empty list
+    
+    textNoSpaces = list(userCharacters.replace(" ", ""))
+    multipliedFactor = ((gridHeight * gridLength))
+    longList = []
+    longList.extend(textNoSpaces * multipliedFactor)
+
     grid = []
-    #outer loop starts with a new empty list and then the inner loop adds the character the specificed number of times (the length of the grid) to that empty loop. Then that empty loops gets appended to the main list. This successfully creates a row with the desired length. This repeats till the desired height of the grid is reached.
+  
     for i in range(gridHeight):
-        row = []
-        for i2 in range(gridLength):
-            row.append(character)
-        grid.append(row)
+      grid.append(longList[(gridLength * i):gridLength * (i + 1)])
 
     def outputGrid(inputGrid):
         if gridLength * gridHeight > 25:
@@ -83,13 +79,14 @@ while True:
 
         print("-" * (2 * len(inputGrid[0]) + 3))  #Top border line
         for row in inputGrid:
-            print("|", end=" ")  #left side border
+            print("|", end = " ")  #left side border
             for item in row:
-                print(item, end=" ")  #each item separated by spaces
+                print(item, end = " ")  #each item separated by spaces
             print('|')  # right side border
         print("-" * (2 * len(inputGrid[0]) + 3) + "\n")  #Bottom border line
 
     outputGrid(grid)
+
 
     #loop to get correct input to play again
     while True:
